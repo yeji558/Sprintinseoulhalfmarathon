@@ -228,8 +228,8 @@ body{background:#fff;color:var(--g800);font-family:var(--sans);overflow-x:hidden
   <button class="tab" data-pane="p-timeline">👥 응원단</button>
   <button class="tab" data-pane="p-cheer">📍 지점</button>
   <button class="tab" data-pane="p-runners">🏃 주자</button>
-  <button class="tab" data-pane="p-add">➕ 추가</button>
   <button class="tab" data-pane="p-live">⏱ 라이브</button>
+  <button class="tab" data-pane="p-add">➕ 추가</button>
 </div>
 
 <div class="content">
@@ -1893,7 +1893,7 @@ function renderTimeline_tab(){
       <span style="font-size:16px">📣</span>
       <div>
         <div class="tl-group-title">${team.label} ${team.members}</div>
-        ${teamRunners.length ? `<div style="font-size:10px;color:rgba(255,255,255,0.8);margin-top:2px">담당 주자: ${teamRunners.map(r=>r.name).join(' · ')}</div>` : ''}
+
       </div>
     </div>
 
@@ -1911,19 +1911,7 @@ function renderTimeline_tab(){
           <div class="tl-detail">${step.detail.split('\\n').join('<br/>')}</div>
           ${step.stay?`<div style="font-size:10px;color:var(--g400);margin-top:3px">⏰ 응원 시간: ${step.stay}</div>`:''}
           <span class="tl-badge" style="background:${step.badgeColor};color:${step.badgeText}">${step.badge}</span>
-          ${step.isFinish && teamRunners.length ? `
-            <div style="margin-top:6px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;padding:7px 10px">
-              <div style="font-size:10px;color:var(--g500);margin-bottom:3px">담당 주자 골인 예상</div>
-              ${teamRunners.map(r=>{
-                const sp=splits(r);
-                const finSec=sp[sp.length-1].sec;
-                return `<div style="display:flex;justify-content:space-between;align-items:center;padding:2px 0">
-                  <span style="font-size:12px;font-weight:600">${r.name}</span>
-                  <span style="font-family:var(--mono);font-size:13px;font-weight:700;color:${COLORS[r.colorIdx]?.c||'#e8312a'}">${clock(finSec,r)}</span>
-                </div>`;
-              }).join('')}
-            </div>
-          `:''}
+
         </div>
       </div>`;
     }).join('')}
